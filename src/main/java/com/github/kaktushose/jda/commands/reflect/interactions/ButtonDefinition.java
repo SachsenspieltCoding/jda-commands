@@ -27,18 +27,20 @@ public class ButtonDefinition extends EphemeralInteraction {
     private final Emoji emoji;
     private final String link;
     private final ButtonStyle style;
+    private final ExpirationDefinition strategy;
 
     protected ButtonDefinition(Method method,
                                boolean ephemeral,
                                String label,
                                Emoji emoji,
                                String link,
-                               ButtonStyle style) {
+                               ButtonStyle style, ExpirationDefinition strategy) {
         super(method, ephemeral);
         this.label = label;
         this.emoji = emoji;
         this.link = link;
         this.style = style;
+        this.strategy = strategy;
     }
 
     /**
@@ -78,13 +80,16 @@ public class ButtonDefinition extends EphemeralInteraction {
             emoji = Emoji.fromFormatted(emojiString);
         }
 
+        ExpirationDefinition strategy = ExpirationDefinition.build(method);
+
         return Optional.of(new ButtonDefinition(
                 method,
                 button.ephemeral(),
                 button.value(),
                 emoji,
                 button.link(),
-                button.style()
+                button.style(),
+                strategy
         ));
     }
 
@@ -142,6 +147,16 @@ public class ButtonDefinition extends EphemeralInteraction {
     @NotNull
     public ButtonStyle getStyle() {
         return style;
+    }
+
+    /**
+     * Gets the {@link ExpirationDefinition}.
+     *
+     * @return the {@link ExpirationDefinition}
+     */
+    @NotNull
+    public ExpirationDefinition getExpirationStrategy() {
+        return strategy;
     }
 
     /**

@@ -7,11 +7,14 @@ import com.github.kaktushose.jda.commands.dispatching.RuntimeSupervisor.Interact
 import com.github.kaktushose.jda.commands.dispatching.reply.ReplyContext;
 import com.github.kaktushose.jda.commands.embeds.ErrorMessageFactory;
 import com.github.kaktushose.jda.commands.reflect.interactions.ButtonDefinition;
+import com.github.kaktushose.jda.commands.reflect.interactions.ExpirationDefinition;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.Optional;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.ScheduledThreadPoolExecutor;
 
 /**
  * Dispatches commands by taking a {@link ButtonContext} and passing it through the execution chain.
@@ -24,6 +27,7 @@ public class ButtonDispatcher extends GenericDispatcher<ButtonContext> {
 
     private static final Logger log = LoggerFactory.getLogger(ButtonDispatcher.class);
     private final RuntimeSupervisor runtimeSupervisor;
+    private final ScheduledExecutorService executor;
 
     /**
      * Constructs a new ButtonDispatcher.
@@ -34,6 +38,7 @@ public class ButtonDispatcher extends GenericDispatcher<ButtonContext> {
     public ButtonDispatcher(DispatcherSupervisor supervisor, RuntimeSupervisor runtimeSupervisor) {
         super(supervisor);
         this.runtimeSupervisor = runtimeSupervisor;
+        executor = new ScheduledThreadPoolExecutor(4);
     }
 
     /**
@@ -78,7 +83,9 @@ public class ButtonDispatcher extends GenericDispatcher<ButtonContext> {
         log.info("Executing button {} for user {}", button.getMethod().getName(), context.getEvent().getMember());
         try {
             context.setRuntime(runtime);
-            button.getMethod().invoke(runtime.getInstance(), new ButtonEvent(button, context));
+            ButtonEvent event = new ButtonEvent(button, context);
+            button.getMethod().invoke(runtime.getInstance(), event);
+            registerExpiration(button, event, runtime);
         } catch (Exception exception) {
             log.error("Button execution failed!", exception);
             // this unwraps the underlying error in case of an exception inside the command class
@@ -98,4 +105,26 @@ public class ButtonDispatcher extends GenericDispatcher<ButtonContext> {
         }
         return false;
     }
+
+    private void registerExpiration(ButtonDefinition button, ButtonEvent event, InteractionRuntime runtime) {
+        ExpirationDefinition strategy = button.getExpirationStrategy();
+        // find method
+
+        if (strategy.getStrategy() == ExpirationDefinition.Strategy.KEEP) {
+            return;
+        }
+        executor.schedule(() -> {
+            System.out.println("called");
+
+            switch (strategy.getStrategy()) {
+                case CLEAR: {
+                    event.removeComponents();
+                }
+                case DELETE: {
+                   event.getMessage().delete().queue();
+                }
+            }
+        }, strategy.getTime(), strategy.getUnit());
+    }
+
 }

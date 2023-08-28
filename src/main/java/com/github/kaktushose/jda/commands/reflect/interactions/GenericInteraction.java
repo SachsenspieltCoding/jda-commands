@@ -47,7 +47,7 @@ public abstract class GenericInteraction {
     }
 
     /**
-     * Gets a new instance of the method defining class
+     * Gets a new instance of the method defining class.
      *
      * @return a new instance of the method defining class
      * @throws InvocationTargetException if the underlying constructor throws an exception
