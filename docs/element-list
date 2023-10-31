@@ -12,9 +12,9 @@ com.github.kaktushose.jda.commands.dispatching.filter
 com.github.kaktushose.jda.commands.dispatching.filter.impl
 com.github.kaktushose.jda.commands.dispatching.interactions
 com.github.kaktushose.jda.commands.dispatching.interactions.autocomplete
-com.github.kaktushose.jda.commands.dispatching.interactions.buttons
 com.github.kaktushose.jda.commands.dispatching.interactions.commands
-com.github.kaktushose.jda.commands.dispatching.interactions.menus
+com.github.kaktushose.jda.commands.dispatching.interactions.components
+com.github.kaktushose.jda.commands.dispatching.interactions.modals
 com.github.kaktushose.jda.commands.dispatching.reply
 com.github.kaktushose.jda.commands.dispatching.reply.components
 com.github.kaktushose.jda.commands.dispatching.validation
@@ -23,5 +23,6 @@ com.github.kaktushose.jda.commands.embeds
 com.github.kaktushose.jda.commands.permissions
 com.github.kaktushose.jda.commands.reflect
 com.github.kaktushose.jda.commands.reflect.interactions
+com.github.kaktushose.jda.commands.reflect.interactions.commands
 com.github.kaktushose.jda.commands.reflect.interactions.menus
 com.github.kaktushose.jda.commands.scope
