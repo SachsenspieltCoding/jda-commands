@@ -8,13 +8,13 @@ com.github.kaktushose.jda.commands.dependency
 com.github.kaktushose.jda.commands.dispatching
 com.github.kaktushose.jda.commands.dispatching.adapter
 com.github.kaktushose.jda.commands.dispatching.adapter.impl
-com.github.kaktushose.jda.commands.dispatching.filter
-com.github.kaktushose.jda.commands.dispatching.filter.impl
 com.github.kaktushose.jda.commands.dispatching.interactions
 com.github.kaktushose.jda.commands.dispatching.interactions.autocomplete
 com.github.kaktushose.jda.commands.dispatching.interactions.commands
 com.github.kaktushose.jda.commands.dispatching.interactions.components
 com.github.kaktushose.jda.commands.dispatching.interactions.modals
+com.github.kaktushose.jda.commands.dispatching.middleware
+com.github.kaktushose.jda.commands.dispatching.middleware.impl
 com.github.kaktushose.jda.commands.dispatching.reply
 com.github.kaktushose.jda.commands.dispatching.reply.components
 com.github.kaktushose.jda.commands.dispatching.validation
@@ -24,5 +24,6 @@ com.github.kaktushose.jda.commands.permissions
 com.github.kaktushose.jda.commands.reflect
 com.github.kaktushose.jda.commands.reflect.interactions
 com.github.kaktushose.jda.commands.reflect.interactions.commands
-com.github.kaktushose.jda.commands.reflect.interactions.menus
+com.github.kaktushose.jda.commands.reflect.interactions.components
+com.github.kaktushose.jda.commands.reflect.interactions.components.menus
 com.github.kaktushose.jda.commands.scope
