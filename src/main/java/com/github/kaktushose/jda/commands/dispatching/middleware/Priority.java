@@ -1,5 +1,7 @@
 package com.github.kaktushose.jda.commands.dispatching.middleware;
 
+import com.github.kaktushose.jda.commands.dispatching.middleware.internal.MiddlewareRegistry;
+
 /**
  * Enum to define with witch priority a {@link Middleware} should be executed.
  *

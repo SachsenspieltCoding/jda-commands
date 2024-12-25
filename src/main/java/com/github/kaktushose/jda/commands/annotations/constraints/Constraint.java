@@ -1,5 +1,7 @@
 package com.github.kaktushose.jda.commands.annotations.constraints;
 
+import com.github.kaktushose.jda.commands.dispatching.validation.internal.ValidatorRegistry;
+
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
@@ -9,7 +11,7 @@ import java.lang.annotation.Target;
  * Indicates that an annotation type can be used for parameter validation. When implementing custom validators, the
  * annotation type must be annotated with this annotation.
  *
- * @see com.github.kaktushose.jda.commands.dispatching.validation.ValidatorRegistry ValidatorRegistry
+ * @see ValidatorRegistry ValidatorRegistry
  * @since 2.0.0
  */
 @Target(ElementType.ANNOTATION_TYPE)

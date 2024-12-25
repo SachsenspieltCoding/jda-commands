@@ -1,7 +1,8 @@
 package com.github.kaktushose.jda.commands.dispatching.middleware.impl;
 
-import com.github.kaktushose.jda.commands.dispatching.context.InvocationContext;
+import com.github.kaktushose.jda.commands.dispatching.InvocationContext;
 import com.github.kaktushose.jda.commands.dispatching.middleware.Middleware;
+import com.github.kaktushose.jda.commands.dispatching.validation.internal.ValidatorRegistry;
 import com.github.kaktushose.jda.commands.reflect.ConstraintDefinition;
 import com.github.kaktushose.jda.commands.reflect.ImplementationRegistry;
 import com.github.kaktushose.jda.commands.reflect.ParameterDefinition;
@@ -17,7 +18,7 @@ import java.util.List;
  * A {@link Middleware} implementation that will check the parameter constraints a
  * {@link SlashCommandDefinition} might have.
  *
- * @see com.github.kaktushose.jda.commands.dispatching.validation.ValidatorRegistry ValidatorRegistry
+ * @see ValidatorRegistry ValidatorRegistry
  * @since 2.0.0
  */
 public class ConstraintMiddleware implements Middleware {

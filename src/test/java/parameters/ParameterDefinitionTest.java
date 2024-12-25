@@ -1,7 +1,7 @@
 package parameters;
 
 import com.github.kaktushose.jda.commands.annotations.constraints.Min;
-import com.github.kaktushose.jda.commands.dispatching.validation.ValidatorRegistry;
+import com.github.kaktushose.jda.commands.dispatching.validation.internal.ValidatorRegistry;
 import com.github.kaktushose.jda.commands.dispatching.validation.impl.MinimumValidator;
 import com.github.kaktushose.jda.commands.reflect.ParameterDefinition;
 import org.junit.jupiter.api.BeforeAll;

@@ -1,7 +1,7 @@
 package com.github.kaktushose.jda.commands.dispatching.internal;
 
 import com.github.kaktushose.jda.commands.dispatching.ExpirationStrategy;
-import com.github.kaktushose.jda.commands.dispatching.context.KeyValueStore;
+import com.github.kaktushose.jda.commands.dispatching.KeyValueStore;
 import com.github.kaktushose.jda.commands.dispatching.handling.*;
 import com.github.kaktushose.jda.commands.dispatching.handling.command.ContextCommandHandler;
 import com.github.kaktushose.jda.commands.dispatching.handling.command.SlashCommandHandler;

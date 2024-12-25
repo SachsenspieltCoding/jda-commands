@@ -1,5 +1,6 @@
 package com.github.kaktushose.jda.commands.annotations.constraints;
 
+import com.github.kaktushose.jda.commands.dispatching.adapter.internal.TypeAdapterRegistry;
 import net.dv8tion.jda.api.entities.Member;
 import net.dv8tion.jda.api.entities.User;
 
@@ -10,7 +11,7 @@ import java.lang.annotation.Target;
 
 /**
  * The annotated element must <b>not</b> be the specified user or member. This constraint will use the
- * {@link com.github.kaktushose.jda.commands.dispatching.adapter.TypeAdapterRegistry TypeAdapterRegistry} to
+ * {@link TypeAdapterRegistry TypeAdapterRegistry} to
  * determine the user or member.
  *
  * @see Constraint

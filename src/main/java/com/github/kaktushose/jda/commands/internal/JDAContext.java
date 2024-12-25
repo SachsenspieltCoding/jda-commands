@@ -7,6 +7,7 @@ import net.dv8tion.jda.api.utils.cache.SnowflakeCacheView;
 import org.jetbrains.annotations.ApiStatus;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.function.Consumer;
 
 /**
@@ -26,6 +27,7 @@ public final class JDAContext {
      * @param context the {@link JDA} or {@link ShardManager} object
      */
     public JDAContext(Object context) {
+        Objects.requireNonNull(context);
         this.context = context;
     }
 

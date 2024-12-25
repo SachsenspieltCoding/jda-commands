@@ -1,4 +1,4 @@
-package com.github.kaktushose.jda.commands.dispatching.context;
+package com.github.kaktushose.jda.commands.dispatching;
 
 import com.github.kaktushose.jda.commands.dispatching.reply.MessageReply;
 import com.github.kaktushose.jda.commands.reflect.interactions.GenericInteractionDefinition;
@@ -13,7 +13,7 @@ import java.util.SequencedCollection;
 /// @param <T>           The used type of [GenericInteractionCreateEvent]
 /// @param event         the underlying jda event
 /// @param keyValueStore the [KeyValueStore] belonging to this interaction over its whole lifetime
-/// @param arguments     the arguments used to call the final user defined method via [GenericInteractionDefinition#invoke(java.lang.Object, com.github.kaktushose.jda.commands.dispatching.context.InvocationContext)]
+/// @param arguments     the arguments used to call the final user defined method via [GenericInteractionDefinition#invoke(java.lang.Object, InvocationContext)]
 /// @param definition    the [GenericInteractionDefinition] defining this interaction (referring to the user defined method)
 public record InvocationContext<T extends GenericInteractionCreateEvent>(
         T event,

@@ -5,7 +5,7 @@ import com.github.kaktushose.jda.commands.annotations.interactions.StringSelectM
 import com.github.kaktushose.jda.commands.dispatching.events.interactions.ComponentEvent;
 import com.github.kaktushose.jda.commands.dispatching.events.interactions.ModalEvent;
 import com.github.kaktushose.jda.commands.dispatching.internal.Runtime;
-import com.github.kaktushose.jda.commands.dispatching.context.KeyValueStore;
+import com.github.kaktushose.jda.commands.dispatching.KeyValueStore;
 import com.github.kaktushose.jda.commands.dispatching.events.interactions.AutoCompleteEvent;
 import com.github.kaktushose.jda.commands.dispatching.events.interactions.CommandEvent;
 import com.github.kaktushose.jda.commands.dispatching.middleware.Middleware;
