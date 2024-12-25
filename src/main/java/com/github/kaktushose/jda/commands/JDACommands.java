@@ -1,7 +1,6 @@
 package com.github.kaktushose.jda.commands;
 
 import com.github.kaktushose.jda.commands.annotations.interactions.EntitySelectMenu;
-import com.github.kaktushose.jda.commands.annotations.interactions.SlashCommand;
 import com.github.kaktushose.jda.commands.annotations.interactions.StringSelectMenu;
 import com.github.kaktushose.jda.commands.dependency.DependencyInjector;
 import com.github.kaktushose.jda.commands.dispatching.ExpirationStrategy;
@@ -28,8 +27,6 @@ import net.dv8tion.jda.api.sharding.ShardManager;
 import org.jetbrains.annotations.NotNull;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
-import java.util.Objects;
 
 
 public final class JDACommands {
@@ -89,34 +86,40 @@ public final class JDACommands {
         return implementationRegistry;
     }
 
-    /**
-     * Creates a new JDACommands instance and starts the frameworks.
-     *
-     * @param jda      the corresponding {@link JDA} instance
-     * @param clazz    a class of the classpath to scan
-     * @param packages package(s) to exclusively scan
-     * @return a new JDACommands instance
-     */
+    /// Creates a new JDACommands instance and starts the frameworks.
+    ///
+    /// @param jda      the corresponding [JDA] instance
+    /// @param clazz    a class of the classpath to scan
+    /// @param packages package(s) to exclusively scan
+    /// @return a new JDACommands instance
     public static JDACommands start(@NotNull JDA jda, @NotNull Class<?> clazz, @NotNull String... packages) {
         return builder(jda, clazz, packages).start();
     }
 
-    /**
-     * Creates a new JDACommands instance and starts the frameworks.
-     *
-     * @param shardManager the corresponding {@link ShardManager} instance
-     * @param clazz        a class of the classpath to scan
-     * @param packages     package(s) to exclusively scan
-     * @return a new JDACommands instance
-     */
+    /// Creates a new JDACommands instance and starts the frameworks.
+    ///
+    /// @param shardManager the corresponding [ShardManager] instance
+    /// @param clazz        a class of the classpath to scan
+    /// @param packages     package(s) to exclusively scan
+    /// @return a new JDACommands instance
     public static JDACommands start(@NotNull ShardManager shardManager, @NotNull Class<?> clazz, @NotNull String... packages) {
         return builder(shardManager, clazz, packages).start();
     }
 
+    /// Create a new builder.
+    /// @param jda      the corresponding [JDA] instance
+    /// @param clazz    a class of the classpath to scan
+    /// @param packages package(s) to exclusively scan
+    /// @return a new [JDACommandsBuilder]
     public static JDACommandsBuilder builder(JDA jda, Class<?> clazz, String... packages) {
         return new JDACommandsBuilder(new JDAContext(jda), clazz, packages);
     }
 
+    /// Create a new builder.
+    /// @param shardManager      the corresponding [ShardManager] instance
+    /// @param clazz    a class of the classpath to scan
+    /// @param packages package(s) to exclusively scan
+    /// @return a new [JDACommandsBuilder]
     public static JDACommandsBuilder builder(ShardManager shardManager, Class<?> clazz, String... packages) {
         return new JDACommandsBuilder(new JDAContext(shardManager), clazz, packages);
     }
@@ -129,11 +132,8 @@ public final class JDACommands {
         jdaContext.performTask(jda -> jda.removeEventListener(JDAEventListener));
     }
 
-    /**
-     * Updates all slash commands that are registered with
-     * {@link SlashCommand.CommandScope#GUILD
-     * CommandScope#Guild}
-     */
+    /// Updates all slash commands that are registered with
+    /// [CommandScope#Guild][#GUILD]
     public void updateGuildCommands() {
         updater.updateGuildCommands();
     }
@@ -181,39 +181,6 @@ public final class JDACommands {
                 .findFirst().orElseThrow(() -> new IllegalArgumentException("Unknown Select Menu"));
 
         return (S) selectMenuDefinition.toSelectMenu(selectMenuDefinition.independentCustomId(), true);
-    }
-
-    @Override
-    public boolean equals(Object obj) {
-        if (obj == this) return true;
-        if (obj == null || obj.getClass() != this.getClass()) return false;
-        var that = (JDACommands) obj;
-        return Objects.equals(this.jdaContext, that.jdaContext) &&
-                Objects.equals(this.JDAEventListener, that.JDAEventListener) &&
-                Objects.equals(this.middlewareRegistry, that.middlewareRegistry) &&
-                Objects.equals(this.adapterRegistry, that.adapterRegistry) &&
-                Objects.equals(this.validatorRegistry, that.validatorRegistry) &&
-                Objects.equals(this.dependencyInjector, that.dependencyInjector) &&
-                Objects.equals(this.interactionRegistry, that.interactionRegistry) &&
-                Objects.equals(this.updater, that.updater);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(jdaContext, JDAEventListener, middlewareRegistry, adapterRegistry, validatorRegistry, dependencyInjector, interactionRegistry, updater);
-    }
-
-    @Override
-    public String toString() {
-        return "JDACommands[" +
-                "jdaContext=" + jdaContext + ", " +
-                "JDAEventListener=" + JDAEventListener + ", " +
-                "middlewareRegistry=" + middlewareRegistry + ", " +
-                "adapterRegistry=" + adapterRegistry + ", " +
-                "validatorRegistry=" + validatorRegistry + ", " +
-                "dependencyInjector=" + dependencyInjector + ", " +
-                "interactionRegistry=" + interactionRegistry + ", " +
-                "updater=" + updater + ']';
     }
 
 }
